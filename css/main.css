@@ -1,0 +1,362 @@
+	*{
+		margin:0px;
+		padding:0px;
+	}
+	body{
+		font-family:'open sans',sans-serif;
+	}
+
+	h1{
+		font-size:46px;
+		font-weight:400;
+		line-height: 2;
+		font-family:'open sans',sans-serif;
+		color:#fff;
+	}
+	h2{
+		font-size:25px;
+		text-transform: uppercase;
+		color:#d33;
+	}
+	h1 >span{
+		font-size: 30px;
+	}
+	p{
+		color:#fff;
+		font-size:20px;
+	}
+	a{
+		text-decoration: none;
+		 color:inherit;
+	}
+	span{
+		color:#FF2F2F;
+		text-transform: uppercase;
+		font-weight:400;
+		letter-spacing: 2px;
+	}
+	strong{
+		font-size:18px;
+		letter-spacing:0.6px;
+
+	}
+	ul{
+		list-style:none;
+	}
+
+
+@keyframes wave {
+  0% {
+    margin-left: 0;
+  }
+  100% {
+    margin-left: -1600px;
+  }
+}
+
+@keyframes swell {
+  0%, 100% {
+    transform: translate3d(0,-25px,0);
+  }
+  50% {
+    transform: translate3d(0,5px,0);
+  }
+}
+
+@keyframes move-twink-back {
+    from {background-position:0 0;}
+    to {background-position:-10000px 5000px;}
+}
+@-webkit-keyframes move-twink-back {
+    from {background-position:0 0;}
+    to {background-position:-10000px 5000px;}
+}
+@-moz-keyframes move-twink-back {
+    from {background-position:0 0;}
+    to {background-position:-10000px 5000px;}
+}
+@-ms-keyframes move-twink-back {
+    from {background-position:0 0;}
+    to {background-position:-10000px 5000px;}
+}
+
+@keyframes move-clouds-back {
+    from {background-position:0 0;}
+    to {background-position:10000px 0;}
+}
+@-webkit-keyframes move-clouds-back {
+    from {background-position:0 0;}
+    to {background-position:10000px 0;}
+}
+@-moz-keyframes move-clouds-back {
+    from {background-position:0 0;}
+    to {background-position:10000px 0;}
+}
+@-ms-keyframes move-clouds-back {
+    from {background-position: 0;}
+    to {background-position:10000px 0;}
+}
+	#header{
+		padding-top: 100px;
+		position: relative;
+		width:100%;
+		height:auto;
+		padding-bottom: 30px;
+		background:black;
+		text-align: center;
+	}
+	#abt-sec{
+		width: 100%;
+		height:auto;
+		padding-top: 20px;
+		padding-bottom: 40px;
+		position: relative;
+		background-color:#FFF4AA;
+	}
+	#skill-sec{
+		background-color: transparent;
+		position: relative;
+		width: 100%;
+		height:auto;
+		padding-bottom: 50px;
+	}
+	#sp-head{
+		font-weight:700;
+	}
+	#contact{
+		background: -webkit-linear-gradient(bottom, rgba(255,0,0,0), rgba(58,133,150,1));  /*Safari 5.1-6*/
+  background: -o-linear-gradient(bottom, rgba(255,0,0,0), rgba(58,133,150,1));  /*Opera 11.1-12*/
+  background: -moz-linear-gradient(bottom, rgba(255,0,0,0), rgba(58,133,150,1)); /*Fx 3.6-15*/
+  background: linear-gradient(to bottom, rgba(255,0,0,0), rgba(58,133,150,1)); /*Standard*/
+		overflow-x: hidden;
+		width: 100%;
+		height:auto;
+		padding-top: 20px;
+		padding-bottom: 40px;
+		position: relative;
+		
+	}
+	#name,#more,#less{
+		color:#d33;
+		font-weight:800px;
+
+	}
+	#det{
+		display: none;
+	}
+	#mail,#num{
+		font-size: 24px;
+	}
+
+
+	.image{
+		height:auto;
+		margin:0 auto;	
+		position: relative;
+		top:18%;
+		bottom:20px;
+		
+	}
+	.image img{
+		width:30%;
+		height:30%;
+		z-index: 1000;
+		border-radius:30%;
+	}
+	.heading{
+		top:20px;
+		color:#fff;
+		position: relative;
+		width:100%;
+		text-align: center;
+		height: auto;
+		margin:0 auto;
+		margin-bottom: 10px;
+	}
+	.heading h1{
+
+		color:#000;
+		font-weight:700;
+	}
+	.abt-cont,.contact-div{
+		width:70%;
+		top:20px;
+		line-height: 1.6;
+		padding-bottom: 40px;
+		text-align:center;
+		margin:0 auto;
+		position: relative;
+		display: block;
+
+	}
+	.work{	
+		display: inline-block;
+		color: #fff;
+		width: 100%;
+		position: relative;
+		top:20px;
+		text-align: center;
+		padding-bottom: 20px;
+
+	}
+	.sk-image{
+		margin:20px;
+		padding: 20px;
+		box-sizing: border-box;
+		box-shadow: 0px 1px 2px rgba(0,0,0,0.45);
+		display: inline-block;
+		width:250px;
+		height:250px;
+	}
+	.sk-image img{
+		width: 100%;
+		height: 100%;
+		padding-bottom: 25px;
+	}
+	.sk-image span{
+		color:#d33;
+		font-size:26px;
+	}
+	.soc-small{
+		width:25px;
+		height: 25px;
+
+	}
+	.icons{
+		display: inline-block;
+		text-align: center;
+		width:100%;
+		position: relative;
+		top:30px;
+		margin:0 auto;
+		height:auto;
+	}
+	.links-img{
+		display: inline-block;
+		margin-right: 10px;
+		padding-bottom: 20px;
+	}
+	.links-img img{
+		width:50px;
+		height:50px;
+	}
+	.links-img img:hover{
+		transition: 0.7s;
+		transform: rotateY(360deg);
+	}
+
+.stars, .twinkling, .clouds {
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  width:100%;
+  height:100%;
+  display:block;
+}
+
+.stars {
+  background:#000 url(../img/stars.png) repeat top center;
+  z-index:0;
+}
+
+.twinkling{
+  background:transparent url(../img/twinkling.png) repeat;
+  z-index:0;
+
+  -moz-animation:move-twink-backo 200s linear infinite;
+  -ms-animation:move-twink-back 200s linear infinite;
+  -o-animatin:move-twink-back 200s linear infinite;
+  -webkit-animation:move-twink-back 230s linear infinite;
+  animation:move-twink-back 230s linear infinite;
+}
+.moon{
+		height:100px;
+		position:absolute;
+		float: left;
+		right:50px;
+		top:5%;
+		width:100px;
+		content:"";
+	    background: url("../img/Earths_Moon.svg") no-repeat 0 0;
+	    background-size: 100% 100%;
+	    z-index:10;
+}
+.clouds{
+		background:transparent url(../img/clouds3.png) repeat top center;
+		z-index:3;
+		-moz-animation:move-clouds-back 200s linear infinite;
+		-ms-animation:move-clouds-back 200s linear infinite;
+		-o-animation:move-clouds-back 200s linear infinite;
+		-webkit-animation:move-clouds-back 200s linear infinite;
+		animation:move-clouds-back 200s linear infinite;
+	}
+
+	.wave {
+  background: url(http://tedmcdo.com/labs/wave.svg) repeat-x; 
+  position: absolute;
+  bottom: 0px;
+  overflow-x: hidden;
+  width: 6400px;
+  height: 198px;
+  animation: wave 7s cubic-bezier( 0.36, 0.45, 0.63, 0.53) infinite;
+  transform: translate3d(0, 0, 0);
+}
+.ocean { 
+	top:320px;
+  height:auto;
+  width:100%;
+  position:relative;
+}
+
+
+
+
+@media (max-width: 412px){
+	.
+
+	 img{
+		width:60% !important;
+		height:60%;
+	}
+	h1{
+		font-size:30px;
+	}
+	strong{
+		font-size:14px;
+	}
+	#header{
+		height:auto;
+	}
+	.moon{
+		top:10%;
+		height: 60px;
+		width:60px;
+	}
+	#num,#mail{
+		font-size:18px;
+		line-height:1.5;
+	}
+}
+
+@media (max-width: 768px){
+	.image{
+		top:30%;
+	}
+	.image img{
+		width:50% !important;
+		height:50%;
+	}
+	h1{
+		font-size: 2.2em;
+		line-height: 1.4;
+	}
+	h1 > span{
+		font-size:20px;
+	}
+	#header{
+		height:auto;
+	}
+
+}
