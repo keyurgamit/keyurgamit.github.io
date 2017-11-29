@@ -1,0 +1,184 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using Newtonsoft.Json;
+
+namespace Practical1.Controllers
+{
+    public class HomeController : Controller
+    {
+        // GET: Home
+        public ActionResult Index()
+        {
+            var types = new List<SelectListItem>();
+            types.Add(new SelectListItem() { Text = "Select...", Value = string.Empty });
+            types.Add(new SelectListItem() { Text = "Days", Value = "0" });
+            types.Add(new SelectListItem() { Text = "Months", Value = "1" });
+            types.Add(new SelectListItem() { Text = "Years", Value = "2" });
+
+            ViewBag.ItemTypes = types;
+            //ddl.Value = 
+
+            ViewBag.dateSpan = 0;
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Index(FormCollection fcol)
+        {
+            var FromDate= fcol["txtFromDate"].ToString();
+            var ToDate = fcol["txtToDate"].ToString();
+
+            ViewBag.FromDate = Convert.ToDateTime(FromDate);
+            ViewBag.ToDate = Convert.ToDateTime(ToDate);
+
+
+            ViewBag.dateSpan = GetMonthDifference(Convert.ToDateTime(FromDate), Convert.ToDateTime(ToDate));
+            //ViewBag.startmonth = Convert.ToDateTime(FromDate).Month;
+            //ViewBag.startyear = Convert.ToDateTime(FromDate).Year;
+
+            //ViewBag.endmonth = Convert.ToDateTime(ToDate).Month;
+            //ViewBag.endyear = Convert.ToDateTime(ToDate).Year;
+
+
+            DateTime dtfrom = Convert.ToDateTime(FromDate);
+            DateTime dtto = Convert.ToDateTime(ToDate);
+            List<string> lstSundays = new List<string>();
+            TimeSpan DateDiff = dtto.Subtract(dtfrom);
+            double month = (dtto - dtfrom).Days / 30;
+            double year = (dtto.Year - dtfrom.Year);
+
+            ////all single day show
+            //for (int i = 0; i <= DateDiff.Days; i++)
+            //{
+            //    if (dtfrom.Date.AddDays(i).DayOfWeek == DayOfWeek.Wednesday)
+            //    {
+            //        lstSundays.Add(dtfrom.Date.AddDays(i).Year + "-" + dtfrom.Date.AddDays(i).Month + "-" + dtfrom.Date.AddDays(i).Day);
+            //    }
+            //}
+
+
+
+            //Find Perticular Day
+            string monthsCheck = "";
+            bool result = true;
+            for (int i = 0; i <= DateDiff.Days; i++)
+            {
+                if (monthsCheck != (dtfrom.Date.AddDays(i).Month + "-" + dtfrom.Date.AddDays(i).Year))
+                {
+                    if (dtfrom.Date.AddDays(i).DayOfWeek == DayOfWeek.Monday)
+                    {
+                        int day = FindDay(dtfrom.Date.AddDays(i).Year, dtfrom.Date.AddDays(i).Month, DayOfWeek.Monday, 1);
+                        monthsCheck = dtfrom.Date.AddDays(i).Month + "-" + dtfrom.Date.AddDays(i).Year;
+                        lstSundays.Add(dtfrom.Date.AddDays(i).Year + "-" + dtfrom.Date.AddDays(i).Month + "-" + day);
+                    }
+                }
+            }
+
+
+
+
+
+            ////find alternate days
+            //int count = 0;
+            //for (int i = 0; i <= DateDiff.Days; i++)
+            //{
+            //    if (count == 0)
+            //    {
+            //        count++;
+            //        lstSundays.Add(dtfrom.Date.AddDays(i).Year + "-" + dtfrom.Date.AddDays(i).Month + "-" + dtfrom.Date.AddDays(i).Day);
+            //    }
+            //    else
+            //    {
+            //        if (count == 1)//skip number of every days
+            //            count = 0;
+            //        else
+            //            count++;
+            //    }
+            //}
+
+
+            ///month
+            //int count = 0;
+            //for (int i = 0; i <= month; i++)
+            //{
+            //    if (count==0)
+            //    {
+            //        count++;
+            //        lstSundays.Add(dtfrom.Date.AddMonths(i).Year + "-" + dtfrom.Date.AddMonths(i).Month + "-" + FindDay(dtfrom.Date.AddMonths(i).Year, dtfrom.Date.AddMonths(i).Month,DayOfWeek.Saturday,3));
+            //    }
+            //    else
+            //    {
+            //        if (count == 1)
+            //            count = 0;
+            //        else
+            //            count++;
+            //    }
+            //}
+
+
+
+            ////year
+            //int count = 0;
+            //for (int i = 0; i <= year; i++)
+            //{
+            //    if (count == 0)
+            //    {
+            //        count++;
+            //        lstSundays.Add(dtfrom.Date.AddYears(i).Year + "-" + dtfrom.Date.AddYears(i).Month + "-" + FindDay(dtfrom.Date.AddYears(i).Year, dtfrom.Date.AddYears(i).Month, DayOfWeek.Saturday, 3));
+            //    }
+            //    else
+            //    {
+            //        if (count == 1)
+            //            count = 0;
+            //        else
+            //            count++;
+            //    }
+            //}
+
+
+
+            ViewBag.lstSundays = string.Join(",", lstSundays);
+            //JsonConvert.SerializeObject(lstSundays);
+
+            return View();
+        }
+
+        //public DateTime GetFirstSundayOfNextMonth(DateTime givenDate)
+        //{
+        //    DateTime firstDayNextMonth = givenDate.AddDays(-givenDate.Day + 1);
+        //    int diff = 3 - (int)firstDayNextMonth.DayOfWeek;
+        //    return firstDayNextMonth.AddDays(diff);
+        //}
+
+        public int FindDay(int year, int month, DayOfWeek Day, int occurance)
+        {
+
+            if (occurance <= 0 || occurance > 5)
+                throw new Exception("Occurance is invalid");
+
+            DateTime firstDayOfMonth = new DateTime(year, month, 1);
+            //Substract first day of the month with the required day of the week 
+            var daysneeded = (int)Day - (int)firstDayOfMonth.DayOfWeek;
+            //if it is less than zero we need to get the next week day (add 7 days)
+            if (daysneeded < 0) daysneeded = daysneeded + 7;
+            //DayOfWeek is zero index based; multiply by the Occurance to get the day
+            var resultedDay = (daysneeded + 1) + (7 * (occurance - 1));
+
+            if (resultedDay > (firstDayOfMonth.AddMonths(1) - firstDayOfMonth).Days)
+                throw new Exception(String.Format("No {0} occurance(s) of {1} in the required month", occurance, Day.ToString()));
+
+            return resultedDay;
+        }
+
+
+
+        public int GetMonthDifference(DateTime startDate, DateTime endDate)
+        {
+            int monthsApart = 12 * (startDate.Year - endDate.Year) + startDate.Month - endDate.Month;
+            return Math.Abs(monthsApart);
+        }
+    }
+}
